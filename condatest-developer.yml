@@ -1,0 +1,7 @@
+name: condatest-developer
+
+channels:
+  - conda-forge
+
+dependencies:
+  - boost-cpp
