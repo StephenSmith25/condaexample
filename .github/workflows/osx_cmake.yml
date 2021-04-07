@@ -26,4 +26,4 @@ jobs:
           environment-file: condatest-developer_osx.yml
           auto-activate-base: false
       - run: conda --version
-      - run: which python
+      - run: conda info
