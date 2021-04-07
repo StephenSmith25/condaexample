@@ -27,3 +27,6 @@ jobs:
           auto-activate-base: false
       - run: conda --version
       - run: conda info
+      - run: mkdir build
+      - run: cmake -Bbuild -H.
+      - run: cmake --build build/
