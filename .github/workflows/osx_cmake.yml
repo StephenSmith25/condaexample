@@ -1,4 +1,4 @@
-name: CMake
+name: build_osx
 
 on: [push]
 
@@ -20,7 +20,7 @@ jobs:
     - name: Setup Miniconda
       uses: conda-incubator/setup-miniconda@v2.0.1
       with:
-        activate-environment: condatest-developer
+        activate-environment: /tmp/condatest-developer
         environment-file: condatest-developer_osx.yml
         auto-activate-base: false
 
