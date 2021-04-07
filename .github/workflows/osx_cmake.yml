@@ -14,13 +14,17 @@ jobs:
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: macos-latest
 
+    defaults:
+      run:
+        shell: bash -l {0}
+
     steps:
     - uses: actions/checkout@v2
     
     - name: Setup Miniconda
       uses: conda-incubator/setup-miniconda@v2.0.1
       with:
-        activate-environment: /tmp/condatest-developer
+        activate-environment: condatest-developer
         environment-file: condatest-developer_osx.yml
         auto-activate-base: false
 
