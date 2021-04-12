@@ -40,3 +40,6 @@ cd /Users/stephensmith/conda/condawindows/build/src/stdlib_test && /usr/local/Ce
 /usr/local/Caskroom/miniconda/base/envs/condatest-developer/bin/x86_64-apple-darwin13.4.0-clang++ -march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -stdlib=libc++ -fvisibility-inlines-hidden -std=c++14 -fmessage-length=0 -isystem /usr/local/Caskroom/miniconda/base/envs/condatest-developer/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/usr/local/Caskroom/miniconda/base/envs/condatest-developer/lib -L/usr/local/Caskroom/miniconda/base/envs/condatest-developer/lib CMakeFiles/stdlib_example.dir/main.cpp.o -o stdlib_example 
 ```
 - Which looks like its picking up the runtime libs from the conda enviroment lib folder (e.g libc++ ect ect)
+
+# Recipe
+For osx I had to do conda config --add channels conda-forge and then it let me build the recipe.
