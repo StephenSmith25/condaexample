@@ -1,0 +1,51 @@
+name: condatest-developer
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.8
+  - gxx_linux-64=9.3.0
+  - cmake=3.19.7
+  - texlive-core=20180414
+  - doxygen=1.9.1
+  - tbb=2021.2.0
+  - boost-cpp=1.75.0
+  - boost=1.75.0 # Include only boost-python and boost-numpy
+  - poco=1.10.1
+  - nexus=4.4.3 # Not working on windows
+  - hdf5=1.10.6 # pinned here for Nexus compatibility
+  - hdf4=4.2.13
+  - jemalloc=5.2.1
+  - gsl=2.6
+  - jsoncpp=1.9.4
+  - librdkafka=1.6.0 # Not working on windows
+  - qtwebkit=5.212
+  - ninja=1.10.2
+  - graphviz=2.47.0
+  - pip=21.0.1
+  # Using pip for python packages due to better version numbering
+  - pip:
+    - setuptools==48.0.0
+    - pyqt5==5.15.4 # Handles qt install to keep version consistent between python and C++
+    - sip==6.0.3
+    - qtpy==1.9.0
+    - qscintilla==2.12.1
+    - numpy==1.20.2
+    - scipy==1.6.2
+    - sphinx==3.5.3
+    - sphinx-bootstrap-theme==0.7.1
+    - pycifrw==4.4.2
+    - python-dateutil==2.8.1
+    - matplotlib==3.1.3 # Held back to 3.1.3 due to issues with API changes in later versions.
+    - qtconsole==5.0.3
+    - h5py==3.2.1
+    - mock==4.0.3 # Not sure this is needed now we are on Python 3.6/3.8
+    - psutil==5.8.0
+    - requests==2.25.1
+    - toml==0.10.2
+    - pyyaml==5.4.1
+    # Pip packages not needed for building:
+    - pre-commit==2.12.0
+
+
