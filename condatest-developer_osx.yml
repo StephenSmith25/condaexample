@@ -5,8 +5,6 @@ channels:
 
 dependencies:
   - boost-cpp
-
-
-
-    # compiler  
+  - nexus 
+  # compiler  
   - clangxx_osx-64 

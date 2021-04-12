@@ -1,0 +1,15 @@
+package:
+  name: testconda
+  
+  version: 1.0
+
+source:
+  path: ..
+
+
+requirements:
+
+  build:
+    - boost-cpp
+    - cmake >=2.8.8
+    - make
