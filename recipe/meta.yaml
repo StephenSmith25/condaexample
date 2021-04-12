@@ -12,4 +12,4 @@ requirements:
   build:
     - boost-cpp
     - cmake >=2.8.8
-    - make
+    - ninja
