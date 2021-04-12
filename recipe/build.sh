@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir build
-cd build
+mkdir build-conda
+cd build-conda
 
 cmake \
     -G Ninja \
@@ -9,5 +9,4 @@ cmake \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=10.14\
     ..
 
-ninja
-
+cmake  --build . 
