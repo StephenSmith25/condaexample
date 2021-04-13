@@ -2,6 +2,8 @@ name: condatest-developer
 
 channels:
   - conda-forge
+  - C:\Users\lot53126\Documents\mychannel
 
 dependencies:
   - boost-cpp
+  - nexus
