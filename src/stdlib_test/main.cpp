@@ -2,6 +2,7 @@
 #include <iostream>
 #include <optional>
 #include <variant>
+#include <filesystem>
 
 template <class... Ts> struct overload : Ts... { using Ts::operator()...; };
 template <class... Ts> overload(Ts...) -> overload<Ts...>;
@@ -33,5 +34,9 @@ int main() {
                                   << "\n";
                       }},
              var);
+
+  std::filesystem::path path = "~/";
+  std::cout << "Home path check:" << path << "\n";
+  
   return 0;
 }
