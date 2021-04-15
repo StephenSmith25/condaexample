@@ -24,7 +24,6 @@ dependencies:
   - graphviz=2.47.0
   - librdkafka=1.6.0 # Not working on windows
   - eigen=3.3.9
-  # - lib3mf # Not actually availiable on Conda, not necssarily required.
   - opencascade=7.4.0
   - zlib=1.2.11
   - mesalib=18.3.1 # Not windows: OpenGL implementation
@@ -34,7 +33,6 @@ dependencies:
   - qtwebkit=5.212
   - qscintilla2=2.11.2 # Needs to be in conda, not pip due to C++ packages
   - pyqt=5.12.3 # Has to be conda, not pip, installed to ensure that the sip packages are availiable in the share/sip/PyQt5 directory
-  # - sip=4.19.25
   - qtpy=1.9.0
   - qtconsole=5.0.3
   - numpy=1.20.2

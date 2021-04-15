@@ -1,9 +1,0 @@
-name: condatest-developer
-
-channels:
-  - conda-forge
-
-dependencies:
-  - boost-cpp
-  - clangxx_osx-64 # [osx]
-  - nexus
