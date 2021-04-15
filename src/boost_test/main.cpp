@@ -38,6 +38,6 @@ void export_Example() {
   // Expose class and member-function.
   boost::python::class_<Example>("Example")
     .def("foo",  &Example::foo, boost::python::arg("self"), "foo")
-    .def("bar", &Example::bar, boost::python::args("self", "bar"), "bar"));
+    .def("bar", &Example::bar, boost::python::args("self", "bar"), "bar");
 }
 }
