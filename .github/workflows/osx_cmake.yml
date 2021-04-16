@@ -23,7 +23,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2.0.1
         with:
           activate-environment: condatest-developer
-          environment-file: condatest-developer_osx.yml
+          environment-file: condatest-developer-osx.yml
           auto-activate-base: false
       - run: conda --version
       - run: conda info
