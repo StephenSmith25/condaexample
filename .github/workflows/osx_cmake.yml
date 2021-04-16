@@ -25,6 +25,7 @@ jobs:
           activate-environment: condatest-developer
           environment-file: condatest-developer-osx.yml
           auto-activate-base: false
+          python-version: 3.8
       - run: conda --version
       - run: conda info
       - run: mkdir build
