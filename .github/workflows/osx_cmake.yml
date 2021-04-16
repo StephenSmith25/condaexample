@@ -19,12 +19,17 @@ jobs:
         shell: bash -l {0}
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v2.0.1
         with:
           activate-environment: condatest-developer
-          environment-file: condatest-developer_osx.yml
+          environment-file: condatest-developer-osx.yml
           auto-activate-base: false
+          python-version: 3.8
+      - run: python --version
       - run: conda --version
       - run: conda info
       - run: mkdir build
