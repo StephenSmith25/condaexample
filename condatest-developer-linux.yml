@@ -26,7 +26,7 @@ dependencies:
   - eigen=3.3.9
   - opencascade=7.4.0
   - zlib=1.2.11
-  - mesalib=18.3.1 # Not windows: OpenGL implementation
+  - mesalib=18.0.0 # Not windows: OpenGL implementation
   - qt=5.12.9
   # Python Packages: 
   - setuptools=48.0.0
