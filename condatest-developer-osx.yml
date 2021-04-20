@@ -12,8 +12,8 @@ dependencies:
   - doxygen=1.9.1
   - tbb=2021.2.0 # For release
   - tbb-devel=2021.2.0 # Required for building
-  - boost-cpp=1.75.0
-  - boost=1.75.0 # Include only boost-python and boost-numpy
+  - boost-cpp=1.72.0
+  - boost=1.72.0 # Include only boost-python and boost-numpy
   - poco=1.10.1
   - nexus=4.4.3 # Not working on windows
   - hdf5=1.10.6 # pinned here for Nexus compatibility
