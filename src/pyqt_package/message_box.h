@@ -1,6 +1,9 @@
+#include <QString>
+#include <QMessageBox>
+
 class MessageBox {
 public:
-    MessageBox(QString cppMsg) {
-        QMessageBox::information("C++ title", cppMsg)
+    MessageBox(QWidget *parent, QString &title, QString &cppMsg) {
+        QMessageBox::information(parent, title, cppMsg);
     }
 };

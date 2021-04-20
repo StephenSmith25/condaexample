@@ -15,6 +15,11 @@ import requests
 import toml
 import yaml
 
+# import qt from C++
+from import_qt import import_qt
+
+MessageBox = import_qt('_message_box', '', 'MessageBox')
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -36,7 +41,7 @@ class MainWindow(QMainWindow):
 
     def display_cpp_message(self):
         cpp_msg = "This is from C++"
-        pass
+        MessageBox(self, "Qt5 message", cpp_msg)
 
 
 def main():
