@@ -33,5 +33,6 @@ jobs:
       - run: conda --version
       - run: conda info
       - run: mkdir build
-      - run: cmake -Bbuild -H.
-      - run: cmake --build build/
+      - run: cd build
+      - run: cmake .. -DCMAKE_PREFIX_PATH=$CONDA_PREFIX
+      - run: cmake --build .
