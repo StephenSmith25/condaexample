@@ -27,6 +27,7 @@ dependencies:
   - opencascade=7.4.0
   - zlib=1.2.11
   - mesalib=18.0.0 # Not windows: OpenGL implementation
+  - muparser=2.3.2
   - qt=5.12.9
   # Python Packages: 
   - setuptools=48.0.0
