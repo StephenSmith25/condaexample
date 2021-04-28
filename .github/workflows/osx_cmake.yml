@@ -35,5 +35,5 @@ jobs:
       - run: |
           mkdir build
           cd build
-          cmake .. -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -GNinja -DPython_FIND_FRAMEWORK=NEVER
+          cmake .. -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -GNinja -DCMAKE_FIND_FRAMEWORK=LAST
           ninja
