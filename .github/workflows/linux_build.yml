@@ -1,4 +1,4 @@
-name: build_osx
+name: build_linux
 
 on: [push]
 
@@ -12,7 +12,7 @@ jobs:
     # well on Windows or Mac.  You can convert this to a matrix build if you need
     # cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     defaults:
       run:
@@ -26,7 +26,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2.0.1
         with:
           activate-environment: condatest-developer
-          environment-file: condatest-developer-osx.yml
+          environment-file: condatest-developer-linux.yml
           auto-activate-base: false
           python-version: 3.8
       - run: python --version
@@ -35,5 +35,5 @@ jobs:
       - run: |
           mkdir build
           cd build
-          cmake .. -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -GNinja -DPython_FIND_FRAMEWORK=LAST
+          cmake .. -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -GNinja
           ninja
