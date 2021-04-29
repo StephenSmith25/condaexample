@@ -1,9 +1,7 @@
 set(SIP_SRC _message_box.sip)
 set(SRC_FILES message_box.h)
 set(MODULE_SPEC ${CMAKE_CURRENT_LIST_DIR}/${SIP_SRC})
-find_package(Python ${MINIMUM_PYTHON_VERSION} REQUIRED
-             COMPONENTS Interpreter Development NumPy)
-set(PYTHON_EXECUTABLE ${Python_EXECUTABLE})
+
 find_package(PyQt5 REQUIRED)
 find_package(SIP REQUIRED)
 find_package(Qt5 COMPONENTS Core Gui Widgets)
@@ -33,10 +31,11 @@ target_link_libraries(_message_box
   Qt5::Core
   Qt5::Gui
   Qt5::Widgets
+  Python::Python
 )
 target_include_directories(
     _message_box SYSTEM PRIVATE ${CMAKE_CURRENT_LIST_DIR} ${SIP_INCLUDE_DIR}
 )
 
-file(COPY ${CMAKE_CURRENT_BINARY_DIR}/lib_message_box.so DESTINATION ${CMAKE_CURRENT_LIST_DIR})
-file(RENAME ${CMAKE_CURRENT_LIST_DIR}/lib_message_box.so ${CMAKE_CURRENT_LIST_DIR}/_message_box.so)
+#file(COPY ${CMAKE_CURRENT_BINARY_DIR}/lib_message_box.so DESTINATION ${CMAKE_CURRENT_LIST_DIR})
+#file(RENAME ${CMAKE_CURRENT_LIST_DIR}/lib_message_box.so ${CMAKE_CURRENT_LIST_DIR}/_message_box.so)

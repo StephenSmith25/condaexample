@@ -1,52 +1,12 @@
 find_package(TBB REQUIRED)
 
-set(MINIMUM_PYTHON_VERSION 3.8)
-find_package(PythonLibs 3.8 REQUIRED)
-find_package(Python ${MINIMUM_PYTHON_VERSION} REQUIRED
-             COMPONENTS Interpreter Development NumPy)
-# If anything external uses find_package(PythonInterp) then make sure it finds
-# the correct version and executable
-set(PYTHON_EXECUTABLE ${Python_EXECUTABLE})
-set(Python_ADDITIONAL_VERSIONS ${Python_VERSION_MAJOR}.${Python_VERSION_MINOR})
-
-# Handle switching between previously configured Python verions
-if(Python_INCLUDE_DIR
-   AND NOT Python_INCLUDE_DIR MATCHES
-       ".*${Python_VERSION_MAJOR}\.${Python_VERSION_MINOR}.*")
-  message(
-    STATUS "Python version has changed. Clearing previous Python configuration."
-  )
-  unset_cached_python_variables()
-endif()
-
-find_package(
-  Boost REQUIRED
-  COMPONENTS date_time regex serialization filesystem system
-             python${Python_VERSION_MAJOR}${Python_VERSION_MINOR})
-
 find_package(Poco 1.10.1 REQUIRED)
 
-find_package(Nexus REQUIRED)
-# find_package(hdf REQUIRED) # Hdf4
-
 # HDF5
-if(CMAKE_HOST_WIN32)
-  find_package(ZLIB REQUIRED CONFIGS zlib-config.cmake)
-  set(HDF5_DIR "${MINICONDA_DIR}/cmake/hdf5")
-  find_package(
-    HDF5
-    COMPONENTS CXX HL
-    REQUIRED CONFIGS hdf5-config.cmake)
-  set(HDF5_LIBRARIES hdf5::hdf5_cpp-shared hdf5::hdf5_hl-shared)
-else()
-  find_package(ZLIB REQUIRED)
-  find_package(
-    HDF5
-    COMPONENTS CXX HL
-    REQUIRED)
-endif()
+find_package(ZLIB REQUIRED)
+find_package(HDF5 COMPONENTS CXX HL REQUIRED)
 
-find_package(JemallocLib REQUIRED)
+find_package(JemallocLib)
 
 find_package(GSL REQUIRED)
 
@@ -91,13 +51,7 @@ find_package(OpenCascade REQUIRED)
 
 find_package(Eigen3 3.2 REQUIRED)
 
-if(MSVC)
-  find_package(Git 1.9.5 REQUIRED)
-  find_package(GitLFS REQUIRED)
-  find_package(Threads)
-elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  find_package(Git REQUIRED)
-endif()
+find_package(Git REQUIRED)
 
 if(NOT MSVC)
   add_compile_options(-ljemalloc)
@@ -132,16 +86,12 @@ target_link_libraries(
   ${OpenCascade_LIBRARIES}
   ${Eigen3_LIBRARIES})
 target_include_directories(
-  boost_example
+  all_cpp_lib_check_test
   PUBLIC ${Boost_INCLUDE_DIRS}
          ${PYTHON_INCLUDE_DIRS}
          ${TBB_INCLUDE_DIRS}
-         ${Nexus_INCLUDE_DIRS}
+         ${NEXUS_INCLUDE_DIRS}
          ${GSL_INCLUDE_DIRS}
-         # ${JsonCPP_INCLUDE_DIRS} ${LibRDKafka_INCLUDE_DIRS}
-         # ${Qt5_INCLUDE_DIRS}
          ${QSCINTILLA_QT5_INCLUDE_DIRS}
-         # ${OpenMP_INCLUDE_DIRS}
          ${CxxTest_INCLUDE_DIRS}
-  # ${OpenCascade_INCLUDE_DIRS} ${Eigen3_INCLUDE_DIRS}
 )

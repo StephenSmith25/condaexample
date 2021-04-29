@@ -28,7 +28,7 @@ int main() {
     // Poco check
     const auto file = Poco::File();
     // NeXus check
-    const auto nexusStatus = NXgetversion();
+    NXMDisableErrorReporting();
     // hdf5
     const H5std_string h5string = "test";
     // gsl

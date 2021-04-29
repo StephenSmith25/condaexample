@@ -32,42 +32,39 @@ class PyQtConfig(object):
         # default case where installation paths have not been changed in PyQt's
         # configuration process.
         conda_activated, conda_env = find_conda_env()
-        if conda_env:
+        if conda_env and sys.platform != 'win32':
             self.sip_dir = os.path.join(conda_env, "share", "sip", name)
-        elif sys.platform == 'win32':
-            if sys.version_info > (3,):
-                self.sip_dir = os.path.join(sys.prefix, 'share', 'sip', name)
-            else:
-                self.sip_dir = os.path.join(sys.prefix, 'sip', name)
         else:
-            qt_maj_version = self.version_str[0]
-            if sys.platform == 'darwin':
-                prefix = '/usr/local/opt'  # brew Cellar
-                possible_sip_dirs = []
-                if qt_maj_version == '4':
-                    possible_sip_dirs.append(os.path.join('pyqt@4', 'share', 'sip'))
-                    possible_sip_dirs.append(os.path.join('mantid-pyqt@4', 'share', 'sip'))
-                elif qt_maj_version == '5':
-                    possible_sip_dirs.append(os.path.join('pyqt', 'share', 'sip', 'Qt5'))
-                    possible_sip_dirs.append(os.path.join('mantid-pyqt5', 'share', 'sip', 'Qt5'))
-                else:
-                    raise RuntimeError("Unknown Qt version ({}) found. Unable to determine location of PyQt sip files."
-                                       "Please update FindPyQt accordingly.".format(self.version_str[0]))
+            self.sip_dir = os.path.join(conda_env, 'sip', name)
+
+        qt_maj_version = self.version_str[0]
+        if sys.platform == 'darwin':
+            prefix = '/usr/local/opt'  # brew Cellar
+            possible_sip_dirs = []
+            if qt_maj_version == '4':
+                possible_sip_dirs.append(os.path.join('pyqt@4', 'share', 'sip'))
+                possible_sip_dirs.append(os.path.join('mantid-pyqt@4', 'share', 'sip'))
+            elif qt_maj_version == '5':
+                possible_sip_dirs.append(os.path.join('pyqt', 'share', 'sip', 'Qt5'))
+                possible_sip_dirs.append(os.path.join('mantid-pyqt5', 'share', 'sip', 'Qt5'))
             else:
-                prefix = os.path.join(sys.prefix, 'share')
-                possible_sip_dirs = (
-                    'python{}{}-sip/{}'.format(sys.version_info.major, sys.version_info.minor, name),
-                    'python{}-sip/{}'.format(sys.version_info.major, name),
-                    'sip/{}'.format(name)
+                raise RuntimeError("Unknown Qt version ({}) found. Unable to determine location of PyQt sip files."
+                                       "Please update FindPyQt accordingly.".format(self.version_str[0]))
+        else:
+            prefix = os.path.join(sys.prefix, 'share')
+            possible_sip_dirs = (
+                'python{}{}-sip/{}'.format(sys.version_info.major, sys.version_info.minor, name),
+                'python{}-sip/{}'.format(sys.version_info.major, name),
+                'sip/{}'.format(name)
                 )
-            for sip_dir in possible_sip_dirs:
-                pyqt_sip_dir = os.path.join(prefix, sip_dir)
-                if os.path.exists(pyqt_sip_dir):
-                    self.sip_dir = pyqt_sip_dir
-                    break
-            if self.sip_dir is None:
-                possible_sip_dirs = list(map(lambda p: os.path.join(prefix, p), possible_sip_dirs))
-                raise RuntimeError("Unable to find {}. "
+        for sip_dir in possible_sip_dirs:
+            pyqt_sip_dir = os.path.join(prefix, sip_dir)
+            if os.path.exists(pyqt_sip_dir):
+                self.sip_dir = pyqt_sip_dir
+                break
+        if self.sip_dir is None:
+            possible_sip_dirs = list(map(lambda p: os.path.join(prefix, p), possible_sip_dirs))
+            raise RuntimeError("Unable to find {}. "
                                    "Tried following locations: {}".format(name, pprint.pformat(possible_sip_dirs)))
 
         # Assume uic script is in uic submodule
