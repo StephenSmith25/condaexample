@@ -34,4 +34,4 @@ jobs:
           mkdir build
           cd build
           cmake .. -DCMAKE_PREFIX_PATH=%CONDA_PREFIX%
-          cmake --build . -config Release
+          cmake --build . --config Release
