@@ -37,7 +37,6 @@ dependencies:
   - sphinx=3.5.4
   - pycifrw=4.4.1
   - python-dateutil=2.8.1
-  - matplotlib=3.4.1 # Pinned above 3.1.3 as 3.1.3 has a pyqt dependancy that we cannot support, on Python 3.8
   - h5py=3.1.0
   - psutil=5.8.0
   - requests=2.25.1
@@ -51,3 +50,4 @@ dependencies:
   # Using pip for python packages that aren't present in conda-forge or mantid packages for python 3.8
   - pip:
     - sphinx-bootstrap-theme==0.7.1
+    - matplotlib==3.1.3 # Pip used for package compatibility (Conda seems to have a broken dependancy list), otherwise a high version number is needed which doesn't work right now for workbench.
