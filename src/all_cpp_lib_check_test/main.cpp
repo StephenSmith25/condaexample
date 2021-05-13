@@ -14,7 +14,6 @@
 #include <QHelpSearchResult>
 #include <QtConcurrent>
 #include <QDomAttr>
-#include <QWebFrame>
 #include <QDnsLookup>
 #include <QPrinter>
 #include "Qsci/qscistyle.h"
@@ -53,8 +52,6 @@ int main() {
     const auto unorderedReduce = QtConcurrent::UnorderedReduce;
     // qt Xml
     const QDomAttr attr();
-    // qt WebKitWidgets
-    const auto renderLayer = QWebFrame::RenderLayer::ContentsLayer;
     // qt Network
     const auto errorDns = QDnsLookup::Error::NoError;
     // qt PrintSupport

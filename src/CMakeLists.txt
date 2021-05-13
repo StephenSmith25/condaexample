@@ -6,6 +6,7 @@ add_subdirectory(stdlib_test)
 add_subdirectory(all_cpp_lib_check_test)
 add_subdirectory(nexus)
 add_subdirectory(pyqt_package)
+add_subdirectory(qt_example)
 
 
 

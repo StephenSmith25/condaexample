@@ -1,4 +1,4 @@
-find_package(TBB REQUIRED)
+find_package(TBB CONFIG REQUIRED)
 
 find_package(Poco 1.10.1 REQUIRED)
 
@@ -24,7 +24,6 @@ find_package(
              Help
              Concurrent
              Xml
-             WebKitWidgets
              Network
              PrintSupport
   REQUIRED)
@@ -38,7 +37,7 @@ find_package(OpenMP COMPONENTS CXX)
 
 # find_package(CxxTest REQUIRED)
 
-find_package(OpenSSL REQUIRED)
+# find_package(OpenSSL REQUIRED)
 
 find_package(Cppcheck REQUIRED) # Won't be needed in the future but maybe for
                                 # initial Conda env?
@@ -77,7 +76,6 @@ target_link_libraries(
   Qt5::Help
   Qt5::Concurrent
   Qt5::Xml
-  Qt5::WebKitWidgets
   Qt5::Network
   Qt5::PrintSupport
   Qt5::Qscintilla
