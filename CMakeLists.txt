@@ -36,20 +36,48 @@ find_package(
              python${Python_VERSION_MAJOR}${Python_VERSION_MINOR})
 endif()
 
+if(APPLE)
+  set(MACOSX_BUNDLE_ICON_FILE "icon.icns")
+  set(MACOSX_BUNDLE_GUI_IDENTIFIER "HelloWorld")
+  set(MACOSX_BUNDLE_LONG_VERSION_STRING "1.0.0")
+  set(MACOSX_BUNDLE_BUNDLE_NAME "HelloWorld")
+  set(MACOSX_BUNDLE_SHORT_VERSION_STRING "1.0")
+  set(MACOSX_BUNDLE_BUNDLE_VERSION "1.0.0")
+  set(MACOSX_BUNDLE_COPYRIGHT "Stephen Smith")
+endif(APPLE)
+
 add_subdirectory(src)
 
 include(GNUInstallDirs)
-if(NOT APPLE)
-  set(CMAKE_INSTALL_RPATH $ORIGIN)
-else()
-  set(CMAKE_INSTALL_RPATH @loader_path)
-endif()
+# if(NOT APPLE)
+#   set(CMAKE_INSTALL_RPATH $ORIGIN)
+# else()
+#   set(CMAKE_INSTALL_RPATH @loader_path)
+# endif()
 
 if(BUILD_ALL OR QT_TEST)
     install(TARGETS helloworld 
-            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            BUNDLE DESTINATION ${CMAKE_INSTALL_BINDIR} 
             RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}) 
-
 endif()
+
+
+
+
+
+
+# if(APPLE)
+# if(BUILD_ALL OR QT_TEST)
+#   set(CPACK_GENERATOR DragNDrop)
+#   set(CPACK_BUNDLE_NAME QtExample)
+#   set(CPACK_BUNDLE_ICON ${CMAKE_SOURCE_DIR}/packaging/osx_logo.png)
+# endif()
+# endif()
+
+
+# option(ENABLE_CPACK "Switch to enable CPack package generation"  OFF)
+# if(ENABLE_CPACK)
+#   include(CPack)
+# endif()
+
 
