@@ -1,16 +1,23 @@
 package:
   name: testconda
-  
   version: 1.0
 
 source:
   path: ..
 
+build:
+  number: 0
+
+channels:
+  - conda-forge
 
 requirements:
-
   build:
     - boost-cpp
     - {{ compiler('cxx') }}
-    - ninja # [unix]
+    - ninja 
   
+  host:
+    - qt
+  run:
+    - qt 
