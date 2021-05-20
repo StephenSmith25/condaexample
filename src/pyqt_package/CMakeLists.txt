@@ -27,15 +27,24 @@ COMMENT "Generating message_box python bindings with sip"
 add_library(
     _message_box MODULE ${_sip_generated_cpp} ${_sip_include_deps}
 )
+
+if(NOT APPLE)
+set(PYTHON_LINK_LIBS ${PYTHON_LINK_LIBS} Python::Python)
+endif()
+
 target_link_libraries(_message_box
   Qt5::Core
   Qt5::Gui
   Qt5::Widgets
-  Python::Python
+  ${PYTHON_LINK_LIBS}
 )
 target_include_directories(
     _message_box SYSTEM PRIVATE ${CMAKE_CURRENT_LIST_DIR} ${SIP_INCLUDE_DIR}
 )
+
+if(APPLE)
+set_target_properties(_message_box PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+endif()
 
 #file(COPY ${CMAKE_CURRENT_BINARY_DIR}/lib_message_box.so DESTINATION ${CMAKE_CURRENT_LIST_DIR})
 #file(RENAME ${CMAKE_CURRENT_LIST_DIR}/lib_message_box.so ${CMAKE_CURRENT_LIST_DIR}/_message_box.so)
